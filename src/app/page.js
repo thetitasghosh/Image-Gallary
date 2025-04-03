@@ -14,9 +14,8 @@ import {
 } from "./image-data";
 
 import Image from "next/image";
-import {gsap} from "gsap";
+import { gsap } from "gsap";
 const Home = () => {
-
   const plane1 = useRef(null);
   const plane2 = useRef(null);
   const plane3 = useRef(null);
@@ -28,7 +27,6 @@ const Home = () => {
   const speed = 0.01;
 
   const manageMouseMove = (e) => {
-
     const { movementX, movementY } = e;
     xForce += movementX * speed;
     yForce += movementY * speed;
@@ -37,16 +35,17 @@ const Home = () => {
     }
   };
 
-  const lerp = (start, target, amount) =>  start * (1 - amount) + target * amount;
-   
+  const lerp = (start, target, amount) =>
+    start * (1 - amount) + target * amount;
 
   const animate = () => {
     xForce = lerp(xForce, 0, easing);
     yForce = lerp(yForce, 0, easing);
 
-    gsap.set(plane1.current, { 
+    gsap.set(plane1.current, {
       x: `+=${xForce * 0.6}`,
-      y: `+=${yForce * 0.6}` });
+      y: `+=${yForce * 0.6}`,
+    });
     gsap.set(plane2.current, {
       x: `+=${xForce * 0.5}`,
       y: `+=${yForce * 0.5}`,
@@ -72,7 +71,7 @@ const Home = () => {
     <>
       <main
         onMouseMove={(e) => {
-         manageMouseMove(e)
+          manageMouseMove(e);
         }}
         className="main"
       >
@@ -81,7 +80,13 @@ const Home = () => {
         </div>
 
         <div ref={plane1} className="plane">
-          <Image className="img1" src={img1} alt="Floating" width={130} />
+          <Image
+            className="img1"
+            src={img1}
+            alt="Floating"
+            width={130}
+           
+          />
           <Image className="img2" src={img2} alt="Floating" width={200} />
           <Image className="img3" src={img3} alt="Floating" width={200} />
         </div>
